@@ -23,8 +23,8 @@
                 "location": "hybris/config/environments/common.properties"
              },
              {
-                "aspect": "accstorefront",
-                "location": "hybris/config/environments/accstorefront.properties"
+                "aspect": "nokiastorefront",
+                "location": "hybris/config/environments/nokiastorefront.properties"
              },
              {
                 "aspect": "api",
@@ -136,7 +136,7 @@
             ]
         },
         {
-            "name": "accstorefront",
+            "name": "nokiastorefront",
             "properties": [
                 {
                     "key": "spring.session.enabled",
