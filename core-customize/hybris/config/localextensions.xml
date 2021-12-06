@@ -299,14 +299,14 @@
     <extension name="nokiainitialdata"/>
     <extension name="nokiastorefront"/>
 	<extension name="nokiabackoffice"/>
-	<extension name="sapcpiadapter"/>
+	<!--<extension name="sapcpiadapter"/>
 	<extension name="sapcpiorderexchangeb2b"/>
 	<extension name="saporderexchange"/>
     <extension name="saporderexchangeb2b"/>
     <extension name="ysaporderfulfillment"/>
 	<extension name="saporderexchangeoms"/>
 	<extension name="ysapomsfulfillment"/>
-	<extension name="saporderexchangebackoffice"/>
+	<extension name="saporderexchangebackoffice"/>-->
 	
 	
    
