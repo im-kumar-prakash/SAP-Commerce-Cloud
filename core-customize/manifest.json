@@ -1,48 +1,42 @@
 {
-   "commerceSuiteVersion": "2105",
-   "extensionPacks" : [
-     {
-       "name" : "hybris-commerce-integrations",
-       "version" : "2108.0"
-     }
-   ],
-   "enableImageProcessingService": true,
-   "extensions": [
-       "cloudmediaconversion",  
-       "mediaconversionbackoffice"
-   ],
+    "commerceSuiteVersion": "2105",
+    "enableImageProcessingService": true,
+    "extensions": [
+        "cloudmediaconversion",  
+        "mediaconversionbackoffice"
+    ],
     "useConfig": {
         "properties": [
             {
-                "location": "/hybris/config/environments/local-dev.properties",
+                "location": "hybris/config/environments/local-dev.properties",
                 "persona": "development"
             },
             {
-                "location": "/hybris/config/environments/local-stage.properties",
+                "location": "hybris/config/environments/local-stage.properties",
                 "persona": "staging"
             },
             {
-                "location": "/hybris/config/environments/local-prod.properties",
+                "location": "hybris/config/environments/local-prod.properties",
                 "persona": "production"
             },
             {
-                "location": "/hybris/config/environments/common.properties"
+                "location": "hybris/config/environments/common.properties"
              },
              {
                 "aspect": "accstorefront",
-                "location": "/hybris/config/environments/accstorefront.properties"
+                "location": "hybris/config/environments/accstorefront.properties"
              },
              {
                 "aspect": "api",
-                "location": "/hybris/config/environments/api.properties"
+                "location": "hybris/config/environments/api.properties"
              },
              {
                 "aspect": "backoffice",
-                "location": "/hybris/config/environments/backoffice.properties"
+                "location": "hybris/config/environments/backoffice.properties"
              }
         ],
         "extensions": {
-            "location": "/hybris/config/localextensions.xml",
+            "location": "hybris/config/localextensions.xml",
             "exclude": [
                 "azurecloudhotfolder",
                 "cloudcommons",
@@ -50,432 +44,255 @@
             ]
         }
     },
-    "storefrontAddons":[
-        { 
-            "addon":"commerceorgsamplesaddon",
-            "storefront":"nokiastorefront",
-            "template":"nokiastorefront"
-         },
-         { 
-            "addon":"promotionenginesamplesaddon",
-            "storefront":"nokiastorefront",
-            "template":"nokiastorefront"
-         },
-         { 
-            "addon":"smarteditaddon",
-            "storefront":"nokiastorefront",
-            "template":"nokiastorefront"
-         },
-         { 
-            "addon":"textfieldconfiguratortemplateaddon",
-            "storefront":"nokiastorefront",
-            "template":"nokiastorefront"
-         },
-         { 
-            "addon":"assistedservicestorefront",
-            "storefront":"nokiastorefront",
-            "template":"nokiastorefront"
-         },
-         { 
-            "addon":"assistedservicepromotionaddon",
-            "storefront":"nokiastorefront",
-            "template":"nokiastorefront"
-         },
-         { 
-            "addon":"customerticketingaddon",
-            "storefront":"nokiastorefront",
-            "template":"nokiastorefront"
-         },
-         { 
-            "addon":"orderselfserviceaddon",
-            "storefront":"nokiastorefront",
-            "template":"nokiastorefront"
-         },
-         { 
-            "addon":"adaptivesearchsamplesaddon",
-            "storefront":"nokiastorefront",
-            "template":"nokiastorefront"
-         },
-         { 
-            "addon":"multicountrysampledataaddon",
-            "storefront":"nokiastorefront",
-            "template":"nokiastorefront"
-         },
-         { 
-            "addon":"pcmbackofficesamplesaddon",
-            "storefront":"nokiastorefront",
-            "template":"nokiastorefront"
-         },
-         { 
-            "addon":"personalizationpromotionssampledataaddon",
-            "storefront":"nokiastorefront",
-            "template":"nokiastorefront"
-         },
-         { 
-            "addon":"personalizationsampledataaddon",
-            "storefront":"nokiastorefront",
-            "template":"nokiastorefront"
-         },
-         { 
-            "addon":"personalizationsearchsamplesaddon",
-            "storefront":"nokiastorefront",
-            "template":"nokiastorefront"
-         },
-         { 
-            "addon":"personalizationaddon",
-            "storefront":"nokiastorefront",
-            "template":"nokiastorefront"
-         },
-         { 
-            "addon":"acceleratorwebservicesaddon",
-            "storefront":"ycommercewebservices",
-            "template":"ycommercewebservices"
-         },
-         { 
-            "addon":"profiletagaddon",
-            "storefront":"nokiastorefront",
-            "template":"nokiastorefront"
-         },
-         { 
-            "addon":"cmsoccaddon",
-            "storefront":"ycommercewebservices",
-            "template":"ycommercewebservices"
-         },
-         { 
-            "addon":"ordermanagementaddon",
-            "storefront":"nokiastorefront",
-            "template":"nokiastorefront"
-         },
-         { 
-            "addon":"merchandisingaddon",
-            "storefront":"nokiastorefront",
-            "template":"nokiastorefront"
-         },
-         { 
-            "addon":"merchandisingstorefrontsampledataaddon",
-            "storefront":"nokiastorefront",
-            "template":"nokiastorefront"
-         },
-         { 
-            "addon":"xyformssamples",
-            "storefront":"nokiastorefront",
-            "template":"nokiastorefront"
-        },
-        { 
-            "addon":"xyformsstorefrontcommons",
-            "storefront":"nokiastorefront",
-            "template":"nokiastorefront"
+    "properties": [
+        {
+            "key": "lang.packs",
+            "value": "de,en"
         }
     ],
-   "properties": [
-      {
-         "key": "lang.packs",
-         "value": "de,en"
-      },
-      {
-         "key": "endpoint.hac.platform.init.disabled",
-         "value": "true"
-      },
-      {
-         "key": "endpoint.hac.platform.update.disabled",
-         "value": "true"
-      },
-      {
-         "key": "test.property.1",
-         "value": "test-property-1-value-prod",
-         "persona": "production"
-      },
-      {
-         "key": "test.property.1",
-         "value": "test-property-1-value-dev",
-         "persona": "development"
-      },
-      {
-         "key": "test.property.1",
-         "value": "test-property-1-value"
-      },
-      {
-         "key": "test.property.2",
-         "value": "test-property-2-value"
-      },
-      {
-         "key": "googleApiKey",
-         "value": ""
-      },
-      {
-         "key": "multicountrysampledataaddon.import.active",
-         "value": "false"
-      },
-      {
-         "key": "apiregistryservices.events.exporting",
-         "value": "false"
-      },
-      {
-         "key": "xyformsstorefrontcommons.orbeon.keystoreFile",
-         "value": "/opt/hybris/bin/platform/tomcat/lib/keystore"
-      },
-      {
-         "key": "datahubadapter.datahuboutbound.password",
-         "value": "nimda"
-      }
-   ],
-    "aspects":[
+    "storefrontAddons": [
         {
-            "name":"backoffice",
-            "properties": [
-               {
-                  "key": "xyformsservices.webroot.override",
-                  "value": "true"
-               },
-               {
-                  "key": "xyformsservices.webroot.path",
-                  "value": "/backoffice"
-               },
-               {
-                  "key": "datahub.backoffice.rest.client.password.admin",
-                  "value": "nimda"
-               },
-               {
-                  "key": "datahub.backoffice.rest.client.password.developer",
-                  "value": "developer"
-               },
-               {
-                  "key": "datahubadapter.datahuboutbound.url",
-                  "value": "http://datahub:8080/datahub-webapp/v1"
-               }
-            ],
-            "webapps":[
-                {
-                    "name":"hac",
-                    "contextPath":"/hac"
-                },
-                {
-                    "name":"mediaweb",
-                    "contextPath":"/medias"
-                },
-                {
-                    "name":"backoffice",
-                    "contextPath":"/backoffice"
-                },
-                {
-                    "name":"orbeonweb",
-                    "contextPath":"/web-orbeon"
-                },
-                { 
-                    "name":"xyformsweb",
-                    "contextPath":"/xyformsweb"
-                },
-                {
-                    "name":"datahubadapter",
-                    "contextPath":"/datahubadapter"
-                },
-                {
-                    "name":"oauth2",
-                    "contextPath":"/authorizationserver"
-                }
-            ]
+            "addon": "smarteditaddon",
+            "storefront": "nokiastorefront",
+            "template": "nokiastorefront"
         },
-        { 
-            "name":"accstorefront",
-            "properties":[ 
-               { 
-                  "key":"spring.session.enabled",
-                  "value":"true"
-               },
-               { 
-                  "key":"spring.session.nokiastorefront.save",
-                  "value":"async"
-               },
-               { 
-                  "key":"spring.session.nokiastorefront.cookie.name",
-                  "value":"JSESSIONID"
-               },
-               { 
-                  "key":"spring.session.nokiastorefront.cookie.path",
-                  "value":"/"
-               },
-               { 
-                  "key":"storefrontContextRoot",
-                  "value":""
-               },
-               { 
-                  "key":"xss.filter.header.X-Frame-Options",
-                  "value":""
-               },
-               { 
-                  "key":"xyformsservices.webroot.override",
-                  "value":"true"
-               },
-               { 
-                  "key":"xyformsservices.webroot.path",
-                  "value":""
-               }
-            ],
-            "webapps":[
-                {
-                    "name":"mediaweb",
-                    "contextPath":"/medias"
-                },
-                {
-                    "name":"nokiastorefront",
-                    "contextPath":""
-                },
-                {
-                    "name":"acceleratorservices",
-                    "contextPath":"/acceleratorservices"
-                },
-                { 
-                   "name":"hac",
-                   "contextPath":"/hac"
-                },
-                { 
-                   "name":"orbeonweb",
-                   "contextPath":"/web-orbeon"
-                },
-                { 
-                   "name":"xyformsweb",
-                   "contextPath":"/xyformsweb"
-                }
-            ]
+        {
+            "addon": "textfieldconfiguratortemplateaddon",
+            "storefront": "nokiastorefront",
+            "template": "nokiastorefront"
         },
-        { 
-            "name":"api",
-            "properties":[ 
-               { 
-                  "key":"xss.filter.header.X-Frame-Options",
-                  "value":""
-               },
-               { 
-                  "key":"storefrontContextRoot",
-                  "value":"/nokiastorefront"
-               }
-            ],
-            "webapps":[ 
-               { 
-                  "name":"mediaweb",
-                  "contextPath":"/medias"
-               },
-               { 
-                  "name":"adaptivesearchwebservices",
-                  "contextPath":"/adaptivesearchwebservices"
-               },
-               { 
+        {
+            "addon": "assistedservicestorefront",
+            "storefront": "nokiastorefront",
+            "template": "nokiastorefront"
+        },
+        {
+            "addon": "assistedservicepromotionaddon",
+            "storefront": "nokiastorefront",
+            "template": "nokiastorefront"
+        },
+        {
+            "addon": "customerticketingaddon",
+            "storefront": "nokiastorefront",
+            "template": "nokiastorefront"
+        },
+        {
+            "addon": "orderselfserviceaddon",
+            "storefront": "nokiastorefront",
+            "template": "nokiastorefront"
+        },
+        {
+            "addon": "adaptivesearchsamplesaddon",
+            "storefront": "nokiastorefront",
+            "template": "nokiastorefront"
+        },
+        {
+            "addon": "multicountrysampledataaddon",
+            "storefront": "nokiastorefront",
+            "template": "nokiastorefront"
+        },
+        {
+            "addon": "pcmbackofficesamplesaddon",
+            "storefront": "nokiastorefront",
+            "template": "nokiastorefront"
+        },
+        {
+            "addon": "personalizationaddon",
+            "storefront": "nokiastorefront",
+            "template": "nokiastorefront"
+        },
+        {
+            "addon": "b2bacceleratoraddon",
+            "storefront": "nokiastorefront",
+            "template": "nokiastorefront"
+        },
+        {
+            "addon": "commerceorgaddon",
+            "storefront": "nokiastorefront",
+            "template": "nokiastorefront"
+        }
+    ],
+    "aspects": [
+        {
+            "name": "backoffice",
+            "properties": [],
+            "webapps": [
+                {
+                    "name": "hac",
+                    "contextPath": "/hac"
+                },
+                {
+                    "name": "mediaweb",
+                    "contextPath": "/medias"
+                },
+                {
+                    "name": "backoffice",
+                    "contextPath": "/backoffice"
+                },
+                {
                   "name":"odata2webservices",
                   "contextPath":"/odata2webservices"
-               },
-               { 
-                  "name":"nokiastorefront",
-                  "contextPath":"/nokiastorefront"
-               },
-               { 
-                  "name":"acceleratorservices",
-                  "contextPath":"/acceleratorservices"
-               },
-               { 
-                  "name":"ycommercewebservices",
-                  "contextPath":"/rest"
-               },
-               { 
-                  "name":"smartedit",
-                  "contextPath":"/smartedit"
-               },
-               { 
-                  "name":"cmssmartedit",
-                  "contextPath":"/cmssmartedit"
-               },
-               { 
-                  "name":"smarteditwebservices",
-                  "contextPath":"/smarteditwebservices"
-               },
-               { 
-                  "name":"cmssmarteditwebservices",
-                  "contextPath":"/cmssmarteditwebservices"
-               },
-               { 
-                  "name":"personalizationsmartedit",
-                  "contextPath":"/personalizationsmartedit"
-               },
-               { 
-                  "name":"personalizationpromotionssmartedit",
-                  "contextPath":"/personalizationpromotionssmartedit"
-               },
-               { 
-                  "name":"oauth2",
-                  "contextPath":"/authorizationserver"
-               },
-               { 
-                  "name":"cmswebservices",
-                  "contextPath":"/cmswebservices"
-               },
-               { 
-                  "name":"permissionswebservices",
-                  "contextPath":"/permissionswebservices"
-               },
-               { 
-                  "name":"previewwebservices",
-                  "contextPath":"/previewwebservices"
-               },
-               { 
-                  "name":"personalizationwebservices",
-                  "contextPath":"/personalizationwebservices"
-               },
-               { 
-                  "name":"personalizationsearchsmartedit",
-                  "contextPath":"/personalizationsearchsmartedit"
-               },
-               { 
-                  "name":"merchandisingsmartedit",
-                  "contextPath":"/merchandisingsmartedit"
-               },
-               { 
-                  "name":"merchandisingcmswebservices",
-                  "contextPath":"/merchandisingcmswebservices"
-               },
-               { 
-                  "name":"warehousingwebservices",
-                  "contextPath":"/warehousingwebservices"
                }
             ]
-         },
+        },
         {
-            "name":"backgroundProcessing",
-            "properties":[ 
-                { 
-                   "key":"cluster.node.groups",
-                   "value":"integration,yHotfolderCandidate"
-                }
-             ],
-             "webapps":[ 
-                { 
-                   "name":"hac",
-                   "contextPath":"/hac"
-                },
-                { 
-                   "name":"mediaweb",
-                   "contextPath":"/medias"
+            "name": "accstorefront",
+            "properties": [
+                {
+                    "key": "spring.session.enabled",
+                    "value": "true"
                 },
                 {
-                    "name": "datahubadapter",
-                    "contextPath": "/datahubadapter"
+                    "key": "spring.session.nokiastorefront.save",
+                    "value": "async"
+                },
+                {
+                    "key": "spring.session.nokiastorefront.cookie.name",
+                    "value": "JSESSIONID"
+                },
+                {
+                    "key": "spring.session.nokiastorefront.cookie.path",
+                    "value": "/"
+                },
+                {
+                    "key": "storefrontContextRoot",
+                    "value": ""
+                }
+            ],
+            "webapps": [
+                {
+                    "name": "hac",
+                    "contextPath": "/hac"
+                },
+                {
+                    "name": "mediaweb",
+                    "contextPath": "/medias"
+                },
+                {
+                    "name": "nokiastorefront",
+                    "contextPath": ""
+                },
+                {
+                    "name": "acceleratorservices",
+                    "contextPath": "/acceleratorservices"
+                }
+            ]
+        },
+        {
+            "name": "backgroundProcessing",
+            "properties": [
+                {
+                    "key": "cluster.node.groups",
+                    "value": "integration,yHotfolderCandidate"
+                }
+            ],
+            "webapps": [
+                {
+                    "name": "hac",
+                    "contextPath": "/hac"
+                },
+                {
+                    "name": "mediaweb",
+                    "contextPath": "/medias"
+                }
+            ]
+        },
+        {
+            "name": "api",
+            "properties": [
+                {
+                    "key": "xss.filter.header.X-Frame-Options",
+                    "value": ""
+                },
+                {
+                    "key": "ccv2.platform.tomcat.serverxml.maxThreads",
+                    "value": "1200"
+                },
+                {
+                    "key": "storefrontContextRoot",
+                    "value": "/nokiastorefront"
+                }
+            ],
+            "webapps": [
+                {
+                    "name": "hac",
+                    "contextPath": "/hac"
+                },
+                {
+                    "name": "commercewebservices",
+                    "contextPath": "/occ"
+                },
+                {
+                    "name": "nokiastorefront",
+                    "contextPath": "/nokiastorefront"
+                },
+                {
+                    "name": "smartedit",
+                    "contextPath": "/smartedit"
+                },
+                {
+                    "name": "cmssmartedit",
+                    "contextPath": "/cmssmartedit"
+                },
+                {
+                    "name": "smarteditwebservices",
+                    "contextPath": "/smarteditwebservices"
+                },
+                {
+                    "name": "cmssmarteditwebservices",
+                    "contextPath": "/cmssmarteditwebservices"
+                },
+                {
+                    "name": "acceleratorservices",
+                    "contextPath": "/acceleratorservices"
                 },
                 {
                     "name": "oauth2",
                     "contextPath": "/authorizationserver"
+                },
+                {
+                    "name": "cmswebservices",
+                    "contextPath": "/cmswebservices"
+                },
+                {
+                    "name": "permissionswebservices",
+                    "contextPath": "/permissionswebservices"
+                },
+                {
+                    "name": "previewwebservices",
+                    "contextPath": "/previewwebservices"
+                },
+                {
+                    "name": "mediaweb",
+                    "contextPath": "/medias"
+                },
+                {
+                    "name": "personalizationsmartedit",
+                    "contextPath": "/personalizationsmartedit"
+                },
+                {
+                    "name": "personalizationpromotionssmartedit",
+                    "contextPath": "/personalizationpromotionssmartedit"
+                },
+                {
+                    "name": "personalizationwebservices",
+                    "contextPath": "/personalizationwebservices"
+                },
+                {
+                    "name": "personalizationsearchsmartedit",
+                    "contextPath": "/personalizationsearchsmartedit"
                 }
             ]
         }
     ],
     "tests": {
-      "extensions": [
-          "kiwi",
-          "tiger"
-      ],
-      "annotations": [
-          "UnitTests",
-          "IntegrationTests"
-      ],
-      "packages": [
-          "com.acme.*"
-      ]
-  }
+        "extensions": [],
+        "annotations": [
+            "UnitTests",
+            "IntegrationTests"
+        ],
+        "packages": [
+            "com.acme.*"
+        ]
+    }
 }
