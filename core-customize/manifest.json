@@ -3,7 +3,7 @@
    "extensionPacks" : [
      {
        "name" : "hybris-commerce-integrations",
-       "version" : "2105.2"
+       "version" : "2102.0"
      }
    ],
    "enableImageProcessingService": true,
