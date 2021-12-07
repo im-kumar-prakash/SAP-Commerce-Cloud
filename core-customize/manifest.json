@@ -3,8 +3,7 @@
     "enableImageProcessingService": true,
     "extensions": [
         "cloudmediaconversion",  
-        "mediaconversionbackoffice",
-        "nokiastorefront"
+        "mediaconversionbackoffice"
     ],
     "useConfig": {
         "properties": [
@@ -22,7 +21,11 @@
             },
             {
                 "location": "hybris/config/environments/common.properties"
-             }, 
+             },
+             {
+                "aspect": "accstorefront",
+                "location": "hybris/config/environments/accstorefront.properties"
+             },
              {
                 "aspect": "api",
                 "location": "hybris/config/environments/api.properties"
@@ -50,62 +53,52 @@
     "storefrontAddons": [
         {
             "addon": "smarteditaddon",
-            "storefront": "nokiastorefront",
+            "storefront": "yacceleratorstorefront",
             "template": "yacceleratorstorefront"
         },
         {
             "addon": "textfieldconfiguratortemplateaddon",
-            "storefront": "nokiastorefront",
+            "storefront": "yacceleratorstorefront",
             "template": "yacceleratorstorefront"
         },
         {
             "addon": "assistedservicestorefront",
-            "storefront": "nokiastorefront",
+            "storefront": "yacceleratorstorefront",
             "template": "yacceleratorstorefront"
         },
         {
             "addon": "assistedservicepromotionaddon",
-            "storefront": "nokiastorefront",
+            "storefront": "yacceleratorstorefront",
             "template": "yacceleratorstorefront"
         },
         {
             "addon": "customerticketingaddon",
-            "storefront": "nokiastorefront",
+            "storefront": "yacceleratorstorefront",
             "template": "yacceleratorstorefront"
         },
         {
             "addon": "orderselfserviceaddon",
-            "storefront": "nokiastorefront",
+            "storefront": "yacceleratorstorefront",
             "template": "yacceleratorstorefront"
         },
         {
             "addon": "adaptivesearchsamplesaddon",
-            "storefront": "nokiastorefront",
+            "storefront": "yacceleratorstorefront",
             "template": "yacceleratorstorefront"
         },
         {
             "addon": "multicountrysampledataaddon",
-            "storefront": "nokiastorefront",
+            "storefront": "yacceleratorstorefront",
             "template": "yacceleratorstorefront"
         },
         {
             "addon": "pcmbackofficesamplesaddon",
-            "storefront": "nokiastorefront",
+            "storefront": "yacceleratorstorefront",
             "template": "yacceleratorstorefront"
         },
         {
             "addon": "personalizationaddon",
-            "storefront": "nokiastorefront",
-            "template": "yacceleratorstorefront"
-        },
-        {
-            "addon": "b2bacceleratoraddon",
-            "storefront": "nokiastorefront",
-            "template": "yacceleratorstorefront"
-        },
-        {
-            "addon": "commerceorgaddon",
-            "storefront": "nokiastorefront",
+            "storefront": "yacceleratorstorefront",
             "template": "yacceleratorstorefront"
         }
     ],
@@ -130,6 +123,49 @@
                   "name":"odata2webservices",
                   "contextPath":"/odata2webservices"
                }
+            ]
+        },
+        {
+            "name": "accstorefront",
+            "properties": [
+                {
+                    "key": "spring.session.enabled",
+                    "value": "true"
+                },
+                {
+                    "key": "spring.session.yacceleratorstorefront.save",
+                    "value": "async"
+                },
+                {
+                    "key": "spring.session.yacceleratorstorefront.cookie.name",
+                    "value": "JSESSIONID"
+                },
+                {
+                    "key": "spring.session.yacceleratorstorefront.cookie.path",
+                    "value": "/"
+                },
+                {
+                    "key": "storefrontContextRoot",
+                    "value": ""
+                }
+            ],
+            "webapps": [
+                {
+                    "name": "hac",
+                    "contextPath": "/hac"
+                },
+                {
+                    "name": "mediaweb",
+                    "contextPath": "/medias"
+                },
+                {
+                    "name": "yacceleratorstorefront",
+                    "contextPath": ""
+                },
+                {
+                    "name": "acceleratorservices",
+                    "contextPath": "/acceleratorservices"
+                }
             ]
         },
         {
@@ -164,7 +200,7 @@
                 },
                 {
                     "key": "storefrontContextRoot",
-                    "value": "/nokiastorefront"
+                    "value": "/yacceleratorstorefront"
                 }
             ],
             "webapps": [
@@ -177,8 +213,8 @@
                     "contextPath": "/occ"
                 },
                 {
-                    "name": "nokiastorefront",
-                    "contextPath": "/nokiastorefront"
+                    "name": "yacceleratorstorefront",
+                    "contextPath": "/yacceleratorstorefront"
                 },
                 {
                     "name": "smartedit",
