@@ -22,11 +22,7 @@
             },
             {
                 "location": "hybris/config/environments/common.properties"
-             },
-             /*{
-                "aspect": "accstorefront",
-                "location": "hybris/config/environments/nokiastorefront.properties"
-             },*/
+             }, 
              {
                 "aspect": "api",
                 "location": "hybris/config/environments/api.properties"
@@ -136,49 +132,6 @@
                }
             ]
         },
-        /*{
-            "name": "accstorefront",
-            "properties": [
-                {
-                    "key": "spring.session.enabled",
-                    "value": "true"
-                },
-                {
-                    "key": "spring.session.nokiastorefront.save",
-                    "value": "async"
-                },
-                {
-                    "key": "spring.session.nokiastorefront.cookie.name",
-                    "value": "JSESSIONID"
-                },
-                {
-                    "key": "spring.session.nokiastorefront.cookie.path",
-                    "value": "/"
-                },
-                {
-                    "key": "storefrontContextRoot",
-                    "value": ""
-                }
-            ],
-            "webapps": [
-                {
-                    "name": "hac",
-                    "contextPath": "/hac"
-                },
-                {
-                    "name": "mediaweb",
-                    "contextPath": "/medias"
-                },
-                {
-                    "name": "nokiastorefront",
-                    "contextPath": ""
-                },
-                {
-                    "name": "acceleratorservices",
-                    "contextPath": "/acceleratorservices"
-                }
-            ]
-        },*/
         {
             "name": "backgroundProcessing",
             "properties": [
