@@ -1,7 +1,7 @@
 <hybrisconfig xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:noNamespaceSchemaLocation='../bin/platform/resources/schemas/extensions.xsd'>
   <extensions>
     <path dir='${HYBRIS_BIN_DIR}' autoload='false' />
-    <extension name='yb2bacceleratorstorefront' />-->
+   
     <extension name='adaptivesearch' />
     <extension name='adaptivesearchbackoffice' />
     <extension name='adaptivesearchfacades' />
@@ -57,6 +57,9 @@
     <extension name='yacceleratorcore' />
     <extension name='yacceleratorfacades' />
     <extension name='yacceleratorinitialdata' />
+    <extension name='yacceleratorstorefront' />
+    <extension name='apparelstore' />
+    <extension name='electronicsstore' />
     <extension name='yaddon' />
     <extension name='basecommerce' />
     <extension name='basecommercebackoffice' />
