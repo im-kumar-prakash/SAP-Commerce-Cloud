@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:int="http://www.springframework.org/schema/integration"
+       xmlns:file="http://www.springframework.org/schema/integration/file"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/integration
+        http://www.springframework.org/schema/integration/spring-integration.xsd
+        http://www.springframework.org/schema/integration/file
+        http://www.springframework.org/schema/integration/file/spring-integration-file.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>
+
+    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetObject" ref="hotfolderInboundFileChannelMappings"/>
+        <property name="targetMethod" value="put"/>
+        <property name="arguments">
+            <list>
+                <bean class="java.util.regex.Pattern" factory-method="compile">
+                    <constructor-arg value="(?i)^(Product).*.(.csv)$" />
+                </bean>
+                <ref bean="ProductBatchFilesCloudHotFolderProc"/>
+            </list>
+        </property>
+    </bean>
+
+    <int:channel id="ProductBatchFilesCloudHotFolderProc"/>
+
+
+    <!--Service Activator-->
+
+    <int:service-activator input-channel="ProductBatchFilesCloudHotFolderProc" output-channel="batchFilesHeaderInit"
+                           ref="ProductCloudHotFolderHeaderSetupTask"
+                           method="execute" />
+
+
+    <!--Header Setup -->
+
+    <bean id="ProductCloudHotFolderHeaderSetupTask" class="de.hybris.platform.acceleratorservices.dataimport.batch.task.HeaderSetupTask">
+        <property name="net" value="false"/>
+    </bean>
+
+    <bean id="ProductConverterMapping"
+          class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping">
+        <property name="mapping" value="Product"/>
+        <property name="converter" ref="ProductConverter"/>
+    </bean>
+
+    <bean id="ProductConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+        <property name="header">
+            <value>
+                #{productImpexHeader}
+                INSERT_UPDATE Product;code[unique=true];name[lang=$lang];$catalogVersion;$approved
+            </value>
+        </property>
+        <property name="impexRow">
+            <value>
+                ;{+0};{1};{2}
+            </value>
+        </property>
+        <property name="type" value="Product"/>
+    </bean>
+
+    <bean id="productImpexHeader" class="java.lang.String">
+        <constructor-arg>
+            <value># ImpEx for importing data into $CATALOG$
+                $version=Staged
+                $productCatalog=Default
+                $catalogVersion=catalogVersion(catalog(id[default=$productCatalog]),version[default=$version])[unique=true,default=$productCatalog:$version]
+                $lang=en
+                $approved=approvalstatus(code)[default='approved']
+            </value>
+        </constructor-arg>
+    </bean>
+
+    <int:inbound-channel-adapter id="ProductAzureInboundChannelAdapter"
+                                 auto-startup="false"
+                                 role="${cloud.hotfolder.storage.services.role}"
+                                 phase="50"
+                                 ref="ProductAzureBlobSynchronizingMessageSource"
+                                 channel="cloudHotfolderInboundFileHeaderEnricherChannel">
+        <int:poller fixed-rate="${azure.hotfolder.storage.polling.fixed.rate}"
+                    task-executor="azureChannelAdapterTaskExecutor"
+                    max-messages-per-poll="${azure.hotfolder.storage.polling.fetch.batch-size}">
+            <int:transactional synchronization-factory="ProductAzureSynchronizationFactory"
+                               transaction-manager="azurePsuedoTxManager"/>
+        </int:poller>
+    </int:inbound-channel-adapter>
+
+    <bean id="ProductAzureBlobInboundSynchronizer"
+          class="de.hybris.platform.cloud.azure.hotfolder.remote.inbound.AzureBlobInboundSynchronizer">
+        <constructor-arg name="sessionFactory" ref="azureBlobSessionFactory"/>
+        <property name="remoteDirectory" value='#{azureHotfolderRemotePath}' />
+        <property name= "moveToRemoteDirectory" value="#{azureHotfolderRemotePath}/Product/processing"/>
+        <property name="deleteRemoteFiles" value="${azure.hotfolder.storage.delete.remote.files}"/>
+        <property name="preserveTimestamp" value="true"/>
+        <property name="filter" ref="azureHotfolderFileFilter"/>
+        <property name="comparator" ref="azureHotFolderFileComparator"/>
+    </bean>
+
+    <int:transaction-synchronization-factory id="ProductAzureSynchronizationFactory">
+        <int:after-commit channel="ProductAzureArchiveOutboundChannelAdapter"/>
+        <int:after-rollback channel="ProductAzureErrorOutboundChannelAdapter"/>
+    </int:transaction-synchronization-factory>
+
+    <int:outbound-channel-adapter id="ProductAzureArchiveOutboundChannelAdapter" ref="ProductAzureArchiveMessageHandler"> </int:outbound-channel-adapter>
+    <int:outbound-channel-adapter id="ProductAzureErrorOutboundChannelAdapter" ref="ProductAzureErrorMessageHandler"></int:outbound-channel-adapter>
+
+    <bean id="ProductAzureArchiveMessageHandler" parent="abstractAzureMoveMessageHandler">
+        <property name="remoteDirectory" value="#{azureHotfolderRemotePath}/Product/archive"/>
+    </bean>
+    <bean id="ProductAzureErrorMessageHandler" parent="abstractAzureMoveMessageHandler">
+        <property name="remoteDirectory" value="#{azureHotfolderRemotePath}/Product/error"/>
+    </bean>
+
+    <bean id="ProductAzureBlobSynchronizingMessageSource"
+          class="de.hybris.platform.cloud.azure.hotfolder.remote.inbound.AzureBlobSynchronizingMessageSource">
+        <constructor-arg name="synchronizer" ref="ProductAzureBlobInboundSynchronizer"/>
+        <property name="autoCreateLocalDirectory" value="true"/>
+        <property name="localDirectory" value="#{azureHotfolderLocalDirectoryBase}/"/>
+        <property name="maxFetchSize" value="${azure.hotfolder.storage.polling.fetch.batch-size}"/>
+    </bean>
+
+    <bean id="batchTransformerTask"
+          class="de.hybris.platform.acceleratorservices.dataimport.batch.task.ImpexTransformerTask"
+          init-method="initConvertersMap">
+        <property name="fieldSeparator" value="," />
+        <property name="encoding" value="UTF-8" />
+        <property name="linesToSkip" value="0"/>
+        <property name="cleanupHelper">
+            <null/><!-- not needed for tests -->
+        </property>
+    </bean>
+
+    <bean id="azureHotfolderLocalDirectoryBase" class="java.lang.String">
+        <constructor-arg name="value"
+                         value="${azure.hotfolder.storage.container.hotfolder}"/>
+    </bean>
+    <bean id="azureHotFolderBlobSession"
+          class="de.hybris.platform.cloud.azure.hotfolder.remote.session.AzureBlobSession">
+        <constructor-arg name="client"
+                         ref="azureHotFolderBlobClient"/>
+        <constructor-arg name="containerName"
+                         value="${azure.hotfolder.storage.container.name}"/>
+        <constructor-arg name="createContainerIfNotExists"
+                         value="${azure.hotfolder.storage.container.create}"/>
+    </bean>
+
+    <bean id="azurePsuedoTxManager"
+          class="org.springframework.integration.transaction.PseudoTransactionManager"/>
+
+</beans>
