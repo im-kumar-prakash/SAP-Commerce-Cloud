@@ -182,7 +182,7 @@
             "properties": [
                 {
                     "key": "cluster.node.groups",
-                    "value": "integration,yHotfolderCandidate,backgroundProcessing"
+                    "value": "integration,yHotfolderCandidate"
                 }
             ],
             "webapps": [
